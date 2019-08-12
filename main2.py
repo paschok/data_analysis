@@ -53,3 +53,21 @@ print("Average of stroke:", avg_stroke)
 # replace NaN by mean value in "stroke" column
 df["stroke"].replace(np.nan, avg_stroke, inplace = True)
 # inplace = True : changes the value. If inplace is not spacified then the ndew df is created
+
+print('df["num-of-doors"].value_counts(): ', df['num-of-doors'].value_counts())
+# ".idxmax()" method to calculate for us the most common type automatically:
+df['num-of-doors'].value_counts().idxmax()
+
+# replace the missing 'num-of-doors' values by the most frequent
+df["num-of-doors"].replace(np.nan, "four", inplace=True)
+
+# simply drop whole row with NaN in "price" column
+df.dropna(subset=["price"], axis=0, inplace=True)
+
+# reset index, because we droped two rows
+df.reset_index(drop=True, inplace=True)
+
+print(df.head())
+
+# listing datatypes for each column
+print('data types of columns: ', df.dtypes)
